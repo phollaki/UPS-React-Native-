@@ -4,6 +4,7 @@ import useCustomerOrders from '../hooks/useCustomerOrders'
 import { Card, Icon } from '@rneui/themed';
 import { useTailwind } from 'tailwind-rn/dist';
 import { useNavigation } from '@react-navigation/native';
+import { CustomerScreenNavigationProp } from '../screens/CustomerScreen';
 
 type Props = {
   userId: string;
@@ -13,11 +14,11 @@ type Props = {
 
 const CustomerCard = ({userId, email, name}:Props) => {
   const {loading, error, orders} = useCustomerOrders(userId)
-  const navigation = useNavigation()
+  const navigation = useNavigation<CustomerScreenNavigationProp>()
   const tw = useTailwind()
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('MyModal', { name: name, userId: userId})}>
       <Card containerStyle={tw('p-5 rounded-lg')}>
 
         <View>
@@ -34,8 +35,8 @@ const CustomerCard = ({userId, email, name}:Props) => {
 
         </View>
 
-          <Card.Divider/>
-          <Text>{email}</Text>
+        <Card.Divider/>
+        <Text>{email}</Text>
 
       </Card>
     </TouchableOpacity>

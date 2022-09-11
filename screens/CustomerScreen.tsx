@@ -40,7 +40,7 @@ const CustomerScreen = () => {
 
       {data?.getCustomers.filter((customer:CustomerList)=>customer.value.name.includes(input))
       .map(({ name: ID, value: { email, name }}: CustomerResponse ) => (
-        <CustomerCard userId={ID} name={name} email={email}/>
+        <CustomerCard key={ID} userId={ID} name={name} email={email}/>
       ))}
     </ScrollView>
   )
