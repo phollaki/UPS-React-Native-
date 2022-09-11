@@ -1,0 +1,27 @@
+type Items {
+  item_id: Int
+  name: String
+  price: Float
+  quantity: Int
+}
+type TrackingItem {
+  customer_id: String
+  items: [Items]
+}
+type TrackingItemList {
+  name: ID
+  value: TrackingItem
+}
+
+type Query {
+  getTrackingItemById(id: ID!): TrackingItem
+    @rest(
+      endpoint: "https://algolia-search-8ed8b-default-rtdb.firebaseio.com/trackingItems/$id.json"
+    )
+  getTrackingItemList: [TrackingItemList]
+    @rest(
+      endpoint: "https://algolia-search-8ed8b-default-rtdb.firebaseio.com/trackingItems.json"
+      transforms: [{ pathpattern: [], editor: "objectToArray" }]
+    )
+
+}

@@ -1,0 +1,32 @@
+type Order {
+  Lat: Float
+  Lng: Float
+  shippingCost: Int
+  createdAt: Date
+  Address: String
+  City: String
+  carrier: String
+  trackingId: String
+  trackingItems: TrackingItem
+    @materializer(
+      query: "getTrackingItemById"
+      arguments: [{ name: "id", field: "trackingId" }]
+    )
+}
+
+type OrderList {
+  name: ID
+  value: Order
+}
+
+type Query {
+  getOrdersById(id: ID): Order
+    @rest(
+      endpoint: "https://algolia-search-8ed8b-default-rtdb.firebaseio.com/orders/$id.json"
+    )
+  getOrders: [OrderList]
+    @rest(
+      endpoint: "https://algolia-search-8ed8b-default-rtdb.firebaseio.com/orders.json"
+      transforms: [{ pathpattern: [], editor: "objectToArray" }]
+    )
+}
