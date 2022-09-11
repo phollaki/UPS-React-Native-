@@ -14,6 +14,26 @@
   position: relative
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem
+}
+
+.mt-10 {
+  margin-top: 2.5rem
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem
+}
+
+.ml-auto {
+  margin-left: auto
+}
+
 .block {
   display: block
 }
@@ -34,17 +54,71 @@
   height: 16rem
 }
 
+.h-7 {
+  height: 1.75rem
+}
+
 .w-full {
   width: 100%
+}
+
+.flex-row {
+  flex-direction: row
+}
+
+.items-start {
+  align-items: flex-start
+}
+
+.items-end {
+  align-items: flex-end
+}
+
+.items-center {
+  align-items: center
+}
+
+.justify-end {
+  justify-content: flex-end
+}
+
+.justify-between {
+  justify-content: space-between
+}
+
+.rounded-lg {
+  border-radius: 0.5rem
 }
 
 .border {
   border-width: 1px
 }
 
+.border-2 {
+  border-width: 2px
+}
+
+.border-b-2 {
+  border-bottom-width: 2px
+}
+
+.border-gray-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity))
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity))
+}
+
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
+}
+
+.p-5 {
+  padding: 1.25rem
 }
 
 .px-10 {
@@ -60,10 +134,34 @@
   padding-bottom: 0px
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem
+}
+
+.font-bold {
+  font-weight: 700
+}
+
 .uppercase {
   text-transform: uppercase
 }
 
 .capitalize {
   text-transform: capitalize
+}
+
+.text-\[\#59C1CC\] {
+  --tw-text-opacity: 1;
+  color: rgb(89 193 204 / var(--tw-text-opacity))
 }

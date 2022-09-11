@@ -8,6 +8,9 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import { Image, Input } from "@rneui/themed"
 import { useState } from 'react'
+import { GET_CUSTOMERS } from '../graphql/queries'
+import { useQuery } from '@apollo/client'
+import CustomerCard from '../components/CustomerCard'
 
 export type CustomerScreenNavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamList, 'Customers'>,
@@ -18,6 +21,7 @@ const CustomerScreen = () => {
   const tw = useTailwind()
   const navigation = useNavigation()
   const [input, setInput] = useState<string>('')
+  const {loading, error, data} = useQuery(GET_CUSTOMERS)
 
   useLayoutEffect(()=>{
     navigation.setOptions({
@@ -33,6 +37,11 @@ const CustomerScreen = () => {
         PlaceholderContent={<ActivityIndicator/>}
       />
       <Input containerStyle={tw('bg-white pt-5 pb-0 px-10')} placeholder="Search by Customer" value={input} onChangeText={setInput}/>
+
+      {data?.getCustomers.filter((customer:CustomerList)=>customer.value.name.includes(input))
+      .map(({ name: ID, value: { email, name }}: CustomerResponse ) => (
+        <CustomerCard userId={ID} name={name} email={email}/>
+      ))}
     </ScrollView>
   )
 }
